@@ -4,12 +4,12 @@
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div v-for="question in quiz.questions">
                     <div class="title" v-if="question.id === id">{{question.text}}</div>
-                    <div v-if="question.id === id" :increment="increment"
+                    <div v-if="question.id === id"
                          class="custom-control custom-radio custom-control-inline ">
                         <div v-for="response in question.responses">
                             <label class="radio-inline options">
-                                <input type="radio"  :value="response.correct" :name="id"
-                                       v-model="userResponses[id]">{{response.text}}
+                                <input type="radio" :value="response.correct" :name="id"
+                                       v-model="userResponses[id]" @click="check(response)">{{response.text}}
                             </label>
                         </div>
                     </div>
@@ -22,7 +22,10 @@
 </template>
 
 <script>
-    import Timer from "./Timer";
+    import Timer from "./Timer"
+    import axios from "axios";
+    import {mapMutations} from 'vuex'
+
 
     var quiz = {
         title: 'Моя викторина',
@@ -62,8 +65,8 @@
                 responses: [
                     {text: 'Berlin'},
                     {text: 'Buenos Aires'},
-                    {text: 'Madrid'},
-                    {text: 'San Juan', correct: true},
+                    {text: 'Madrid',correct: true},
+                    {text: 'San Juan'},
                 ]
             },
             {
@@ -137,28 +140,37 @@
         data() {
             return {
                 quiz: quiz,
+                questions: [],
                 id: 1,
                 timerCount: 10,
+                select: '',
                 userResponses: Array(quiz.questions.length).fill(false)
             }
+        },
+        mounted() {
+
         },
         methods: {
             changeId() {
                 this.id = this.id + 1;
                 if (this.id % 5 === 0) {
+                    //save current id in state (this.id++)
+                    this.$store.state.currentQuestionId
                     this.$router.push('/scoreboard', [{questionId: 0, true: true}]);
                 }
             },
-
+            check(status) {
+                if (status.correct) {
+                    console.log(status.correct)
+                } else {
+                    console.log(status.correct)
+                }
+            },
+            ...mapMutations([])
 
         },
-        watch: {
-
-        },
-        created() {
-
-        }
-
+        watch: {},
+        computed: {},
     }
 
 

@@ -4,6 +4,7 @@ import './registerServiceWorker'
 import router from './router'
 import style from './assets/style.css'
 import firebase from "firebase";
+import {store} from "./store/store";
 
 
 Vue.config.productionTip = false
@@ -26,5 +27,6 @@ firebase.initializeApp(firebaseConfig);
 
 new Vue({
     router,
+    store:store,
     render: h => h(App)
 }).$mount('#app')
