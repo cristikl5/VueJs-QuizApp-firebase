@@ -18,60 +18,66 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
+                    <tr  v-if="getAnswers.length > 0">
                         <th scope="row">1</th>
-                        <td>{{correctAnswers}}</td>
-                        <td>{{correctAnswers}}</td>
-                        <td>{{correctAnswers}}</td>
-                        <td>{{correctAnswers}}</td>
-                        <td>{{correctAnswers}}</td>
+                        <template v-for="answer in getAnswers.filter(
+                            answer => answer.round === 1
+                        )">
+                                <td :key="answer.id">{{answer.correct}}</td>
+                        </template>
+
                         <td><input class="form-check-input checkboxstyle" type="checkbox" id="inlineCheckbox1"
                                    value="option1">
                             <label class="form-check-label" for="inlineCheckbox1"></label></td>
                     </tr>
+                    <tr v-else>
+                        <th scope="row">1</th>
+
+                    </tr>
                     <tr>
                         <th scope="row">2</th>
-                        <td>{{correctAnswers}}</td>
-                        <td>{{correctAnswers}}</td>
-                        <td>{{correctAnswers}}</td>
-                        <td>{{correctAnswers}}</td>
-                        <td>{{correctAnswers}}</td>
+                        <template v-for="answer in getAnswers.filter(
+                            answer => answer.round === 2
+                        )">
+                            <td :key="answer.id">{{answer.correct}}</td>
+                        </template>
                         <td><input class="form-check-input checkboxstyle" type="checkbox" id="inlineCheckbox2"
                                    value="option1">
                             <label class="form-check-label" for="inlineCheckbox1"></label></td>
                     </tr>
                     <tr>
                         <th scope="row">3</th>
-                        <td>{{correctAnswers}}</td>
-                        <td>{{correctAnswers}}</td>
-                        <td>{{correctAnswers}}</td>
-                        <td>{{correctAnswers}}</td>
-                        <td>{{correctAnswers}}</td>
+                        <template v-for="answer in getAnswers.filter(
+                            answer => answer.round === 3
+                        )">
+                            <td :key="answer.id">{{answer.correct}}</td>
+                        </template>
                         <td><input class="form-check-input checkboxstyle" type="checkbox" id="inlineCheckbox3"
                                    value="option1">
                             <label class="form-check-label" for="inlineCheckbox1"></label></td>
+
                     </tr>
                     <tr>
                         <th scope="row">4</th>
-                        <td>{{correctAnswers}}</td>
-                        <td>{{correctAnswers}}</td>
-                        <td>{{correctAnswers}}</td>
-                        <td>{{correctAnswers}}</td>
-                        <td>{{correctAnswers}}</td>
+                        <template v-for="answer in getAnswers.filter(
+                            answer => answer.round === 4
+                        )">
+                            <td :key="answer.id">{{answer.correct}}</td>
+                        </template>
                         <td><input class="form-check-input checkboxstyle" type="checkbox" id="inlineCheckbox4"
                                    value="option1">
                             <label class="form-check-label" for="inlineCheckbox1"></label></td>
                     </tr>
                     <tr>
                         <th scope="row">5</th>
-                        <td>{{correctAnswers}}</td>
-                        <td>{{correctAnswers}}</td>
-                        <td>{{correctAnswers}}</td>
-                        <td>{{correctAnswers}}</td>
-                        <td>{{correctAnswers}}</td>
+                        <template v-for="answer in getAnswers.filter(
+                            answer => answer.round === 5
+                        )">
+                            <td :key="answer.id">{{answer.correct}}</td>
+                        </template>
                         <td><input class="form-check-input checkboxstyle" type="checkbox" id="inlineCheckbox5"
                                    value="option1">
-                            <label class="form-check-label " for="inlineCheckbox1"></label></td>
+                            <label class="form-check-label" for="inlineCheckbox1"></label></td>
                     </tr>
                     </tbody>
                 </table>
@@ -84,12 +90,18 @@
 </template>
 
 <script>
-    import {mapGetters,mapState} from 'vuex'
+
+    import { mapGetters } from 'vuex'
 
     export default {
         name: "Scoreboard",
         computed: {
-            ...mapGetters(["correctAnswers"]),
+            ...mapGetters([
+                'getAnswers',
+            ])
+        },
+        mounted() {
+            console.log(this.getAnswers, 'getAnswers');
         },
         methods: {
             restart() {
@@ -100,5 +112,8 @@
 </script>
 
 <style scoped>
-
+    .row {
+        display: flex;
+        flex-direction: row;
+    }
 </style>

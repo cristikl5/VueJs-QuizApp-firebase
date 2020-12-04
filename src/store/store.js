@@ -6,28 +6,37 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state: {
-    currentQuestionId: 0,
-    answers: [{ id: 1, correct: true || false }],
-    // results: {
-    //     correct: 0,
-    //     incorrect_answers: 0
-    // },
-    // questions: [
-    //     {
-    //         id: 1,
-    //         correct: true || false
-    //     }
-    // ],
+    answers: [],
+    round: 1,
   },
   getters: {
-    correctAnswers(state) {
-      return state.answers.map((item) => item.correct);
-    },
+      getAnswers: (state) => {
+          return state.answers;
+      },
+      getRound: (state) => {
+          return state.round;
+      }
   },
   mutations: {
-    setCurrentQuestionId(state, id) {
-      return (state.currentQuestionId = id);
-    },
+   results(state,payload) {
+     state.answers=payload
+   },
+   addAnswer(state, payload) {
+     state.answers.push({id: payload.id, correct: payload.value, round: payload.round})
+   },
+   addRound(state, payload) {
+     state.round = payload.round;
+   }
+
   },
-  actions: {},
+  actions: {
+      setCurrentQuestionId({ commit }, results) {
+      console.log(results, 'results');
+      commit('addAnswer', results)
+    },
+      setRound({ commit }, results) {
+      console.log(results, 'results');
+      commit('addRound', results)
+    },
+  }
 });

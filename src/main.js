@@ -5,10 +5,12 @@ import router from './router'
 import style from './assets/style.css'
 import firebase from "firebase";
 import {store} from "./store/store";
+import Vuex from "vuex";
 
 
 Vue.config.productionTip = false
 Vue.use(style)
+Vue.use(Vuex);
 
 
 const firebaseConfig = {

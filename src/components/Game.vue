@@ -1,7 +1,6 @@
 <template>
     <div class="container">
         <div class="row">
-            {{currentQuestionId}}
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div v-for="question in quiz.questions">
                     <div class="title" v-if="question.id === id">{{question.text}}</div>
@@ -132,6 +131,8 @@
             }
         ]
     };
+    import { mapGetters } from 'vuex'
+
     export default {
         name: "Game",
         props: {},
@@ -144,37 +145,47 @@
                 quiz: quiz,
                 questions: [],
                 id: 1,
+                round: null,
                 timerCount: 10,
-                select: '',
                 userResponses: Array(quiz.questions.length).fill(false)
             }
         },
         mounted() {
             this.currentQuestionId = this.$store.state.currentQuestionId;
+            this.round = this.getRound;
         },
         methods: {
             changeId() {
                 this.id = this.id + 1;
-                if (this.id % 5 === 0) {
+                if (this.id === 6) {
                     //save current id in state (this.id++)
-    
-                    this.$store.commit('setCurrentQuestionId', this.id);
-
+                    this.round = this.round + 1;
+                    this.$store.dispatch('setRound', {round: this.round});
+                    this.$store.commit('setCurrentAnswers' ,this.userResponses);
                     this.$router.push('/scoreboard', [{questionId: 0, true: true}]);
                 }
             },
             check(status) {
                 if (status.correct) {
-                    console.log(status.correct)
+                    this.$store.dispatch('setCurrentQuestionId', {id: this.id, value: true, round: this.round});
                 } else {
-                    console.log(status.correct)
+                    this.$store.dispatch('setCurrentQuestionId', {id: this.id, value: false, round: this.round});
+                }
+                this.id = this.id + 1;
+                if (this.id === 6) {
+                    this.round = this.round + 1;
+                    this.$store.dispatch('setRound', {round: this.round});
+                    this.$router.push('/scoreboard');
                 }
             },
-            ...mapMutations([])
 
         },
         watch: {},
-        computed: {},
+        computed: {
+            ...mapGetters([
+                'getRound'
+            ])
+        },
     }
 
 
