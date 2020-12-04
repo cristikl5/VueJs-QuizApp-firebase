@@ -1,6 +1,7 @@
 <template>
     <div class="container">
         <div class="row">
+            {{currentQuestionId}}
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div v-for="question in quiz.questions">
                     <div class="title" v-if="question.id === id">{{question.text}}</div>
@@ -139,6 +140,7 @@
         },
         data() {
             return {
+                currentQuestionId: undefined,
                 quiz: quiz,
                 questions: [],
                 id: 1,
@@ -148,14 +150,16 @@
             }
         },
         mounted() {
-
+            this.currentQuestionId = this.$store.state.currentQuestionId;
         },
         methods: {
             changeId() {
                 this.id = this.id + 1;
                 if (this.id % 5 === 0) {
                     //save current id in state (this.id++)
-                    this.$store.state.currentQuestionId
+    
+                    this.$store.commit('setCurrentQuestionId', this.id);
+
                     this.$router.push('/scoreboard', [{questionId: 0, true: true}]);
                 }
             },
