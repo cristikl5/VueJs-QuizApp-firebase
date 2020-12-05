@@ -8,13 +8,12 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th scope="col">Round</th>
-                        <th scope="col">Question</th>
-                        <th scope="col">Question 2</th>
-                        <th scope="col">Question 3</th>
-                        <th scope="col">Question 4</th>
-                        <th scope="col">Question 5</th>
-                        <th scope="col">Archive</th>
+                        <th >Round</th>
+                        <th>Question</th>
+                        <th>Question 2</th>
+                        <th>Question 3</th>
+                        <th>Question 4</th>
+                        <th>Question 5</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -25,11 +24,6 @@
                         )">
                                 <td :key="answer.id">{{answer.correct}}</td>
                         </template>
-
-                        <td><input class="form-check-input checkboxstyle" type="checkbox" id="inlineCheckbox1"
-                                   value="option1">
-                            <label class="form-check-label" for="inlineCheckbox1"></label></td>
-                    </tr>
                     <tr v-else>
                         <th scope="row">1</th>
 
@@ -41,9 +35,7 @@
                         )">
                             <td :key="answer.id">{{answer.correct}}</td>
                         </template>
-                        <td><input class="form-check-input checkboxstyle" type="checkbox" id="inlineCheckbox2"
-                                   value="option1">
-                            <label class="form-check-label" for="inlineCheckbox1"></label></td>
+
                     </tr>
                     <tr>
                         <th scope="row">3</th>
@@ -52,9 +44,7 @@
                         )">
                             <td :key="answer.id">{{answer.correct}}</td>
                         </template>
-                        <td><input class="form-check-input checkboxstyle" type="checkbox" id="inlineCheckbox3"
-                                   value="option1">
-                            <label class="form-check-label" for="inlineCheckbox1"></label></td>
+
 
                     </tr>
                     <tr>
@@ -64,9 +54,7 @@
                         )">
                             <td :key="answer.id">{{answer.correct}}</td>
                         </template>
-                        <td><input class="form-check-input checkboxstyle" type="checkbox" id="inlineCheckbox4"
-                                   value="option1">
-                            <label class="form-check-label" for="inlineCheckbox1"></label></td>
+
                     </tr>
                     <tr>
                         <th scope="row">5</th>
@@ -75,9 +63,6 @@
                         )">
                             <td :key="answer.id">{{answer.correct}}</td>
                         </template>
-                        <td><input class="form-check-input checkboxstyle" type="checkbox" id="inlineCheckbox5"
-                                   value="option1">
-                            <label class="form-check-label" for="inlineCheckbox1"></label></td>
                     </tr>
                     </tbody>
                 </table>
