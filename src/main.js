@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import App from './App.vue'
+import Vuex from "vuex";
 import './registerServiceWorker'
 import router from './router'
 import style from './assets/style.css'
 import firebase from "firebase";
 import {store} from "./store/store";
-import Vuex from "vuex";
+
 
 
 Vue.config.productionTip = false
