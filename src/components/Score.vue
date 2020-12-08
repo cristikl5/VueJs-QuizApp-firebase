@@ -97,8 +97,5 @@
 </script>
 
 <style scoped>
-    .row {
-        display: flex;
-        flex-direction: row;
-    }
+
 </style>
