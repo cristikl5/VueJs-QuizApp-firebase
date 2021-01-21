@@ -1,4 +1,4 @@
-# task
+# Vue Firebase Auth + Quizz app
 
 ## Project setup
 ```
