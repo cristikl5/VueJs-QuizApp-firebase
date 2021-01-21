@@ -1,4 +1,4 @@
-# Vue Firebase Auth + Quizz app
+# Vue Firebase Auth + Quiz app
 
 ## Project setup
 ```
